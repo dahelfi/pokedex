@@ -4,6 +4,8 @@ let anotherPokemon;
 let counter = 0;
 
 
+
+//function to download all the jsons from the internet
 async function loadFirst20Pokemon(){
     for (let i = 1; i <= 50; i++) {
 
@@ -12,14 +14,12 @@ async function loadFirst20Pokemon(){
         currentPokemon = await response.json();
         pokemonsAsJSONArray.push(currentPokemon);
       
-    }
-  
-    
+    }  
     showPokemonOverview();
 }
 
 
-
+//function to show all the pokemons dynamically on the main page
 function showPokemonOverview(){
     let container = document.getElementById('container');
     container.innerHTML = "";
@@ -53,6 +53,8 @@ function showPokemonOverview(){
     }   
 }
 
+
+//helpfunction that shows some details on the mainpage
 function renderPokemonType(currentPokemon, i){
     let pokemonTypesJSONArray = currentPokemon['types'];
     let container = document.getElementById('pokemonTypes'+i);
@@ -72,6 +74,7 @@ function renderPokemonType(currentPokemon, i){
 
 }
 
+//shows the choosen pokemon in detail on a new page
 function showPokemon(i){
     
     currentPokemon = pokemonsAsJSONArray[i];
@@ -110,11 +113,14 @@ renderPokemonPictureAndImage();
 renderPokemonInfo();
 }
 
+//function to show the pokemonimage and pokemonname
 function renderPokemonPictureAndImage(){
     document.getElementById('pokemonName').innerHTML = currentPokemon['name'];
     document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
 }
 
+
+//function to render the pokemoninfo when a pokemon is choosen
 function renderPokemonInfo(event){
     
     document.getElementById('about-line').classList.add('addUnderlineBlue');
@@ -139,6 +145,8 @@ function renderPokemonInfo(event){
 
 }
 
+
+//function to render the category moves
 function renderMoves(event){
     document.getElementById('baseStats-line').classList.remove('addUnderlineBlue');
     document.getElementById('about-line').classList.remove('addUnderlineBlue');
@@ -170,6 +178,8 @@ function renderMoves(event){
 
 }
 
+
+//function to render the category base stats
 function renderBaseStats(event){
 
     
@@ -217,6 +227,7 @@ function renderBaseStats(event){
 
 }
 
+//function to go back to the main page 
 function backtoBackground(){
 
         document.getElementById('pokemonElementBackground').classList.add('d-none');
