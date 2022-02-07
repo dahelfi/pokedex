@@ -4,7 +4,7 @@ let anotherPokemon;
 
 
 async function loadFirst20Pokemon(){
-    for (let i = 1; i <= 200; i++) {
+    for (let i = 1; i <= 100; i++) {
 
         let url = 'https://pokeapi.co/api/v2/pokemon/'+i;
         let response = await fetch(url);
