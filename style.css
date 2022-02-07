@@ -14,6 +14,10 @@ body{
    
 }
 
+#pokemonName{
+    z-index: 5;
+}
+
 #pokemonElement{
     min-width: fit-content;
     
@@ -145,6 +149,8 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     padding-bottom: 10px;
+    padding-top: 10px;
+    min-height: 100vh;
 }
 
 #categories{
@@ -203,10 +209,7 @@ body{
 
 #input-fields{
     display: flex;
-    width: 300px;
-   
-  
-    
+    width: 300px;  
 }
 
 .first-Inputfield{
@@ -300,6 +303,19 @@ body{
 .d-none{
     display: none;
 }
+
+
+#moves-stats{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#moves-stats h5{
+    font-size: 14px;
+}
+
+
 
 
 @media(max-width: 1600px){
@@ -467,5 +483,53 @@ body{
     .pokemonTypesElement h5{
        font-size: 9px;
     
+    }
+
+    #worth-section{
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        padding-left: 5px;
+        padding-right: 5px;
+
+    }
+
+    #base-stats-elements{
+    
+        font-size: 13px;
+        height: 38px;
+    }
+
+
+    #moves-stats{
+        text-align: center;
+        height: 40px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #moves-stats h5{
+        font-size: 14px;
+    }
+
+
+    .base-stats-worth{
+        width: 50px;
+        margin-right: 10px;
+    
+    }
+    
+    .base-stats-result{
+        width: 30px;
+    
+    }
+
+    #input-fields{
+        width: 290px;  
+    }
+
+    #pokemonElement{
+        min-width: 300px;
+        
     }
 }

@@ -1,18 +1,20 @@
 let currentPokemon;
 let pokemonsAsJSONArray = [];
 let anotherPokemon;
+let counter = 0;
 
 
 async function loadFirst20Pokemon(){
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 50; i++) {
 
         let url = 'https://pokeapi.co/api/v2/pokemon/'+i;
         let response = await fetch(url);
         currentPokemon = await response.json();
         pokemonsAsJSONArray.push(currentPokemon);
-    
+      
     }
   
+    
     showPokemonOverview();
 }
 
@@ -91,8 +93,7 @@ function showPokemon(i){
         
         <button id="menue-button"><h4 id="menue-options" onclick="renderPokemonInfo(event)">about</h4><div id="about-line"></div></button>
         <button id="menue-button"><h4 id="menue-options" onclick="renderBaseStats(event)">base stats</h4><div id="baseStats-line"></div></button>
-        <button id="menue-button"><h4 id="menue-options">evolution</h4><div id="evolution-line"></div></button>
-        <button id="menue-button"><h4 id="menue-options">moves</h4><div id="moves-line"></div></button>
+        <button id="menue-button"><h4 id="menue-options" onclick="renderMoves(event)">moves</h4><div id="moves-line"></div></button>
 
     </div>
     <div id="worth-section">
@@ -118,7 +119,6 @@ function renderPokemonInfo(event){
     
     document.getElementById('about-line').classList.add('addUnderlineBlue');
     document.getElementById('baseStats-line').classList.remove('addUnderlineBlue');
-    document.getElementById('evolution-line').classList.remove('addUnderlineBlue');
     document.getElementById('moves-line').classList.remove('addUnderlineBlue');
 
     let container = document.getElementById('worth-section');
@@ -139,12 +139,42 @@ function renderPokemonInfo(event){
 
 }
 
+function renderMoves(event){
+    document.getElementById('baseStats-line').classList.remove('addUnderlineBlue');
+    document.getElementById('about-line').classList.remove('addUnderlineBlue');
+    document.getElementById('moves-line').classList.add('addUnderlineBlue');
+
+    let container = document.getElementById('worth-section');
+    container.innerHTML = "";
+    let movesLengthCounter;
+
+    if(currentPokemon['moves'].length < 5){
+        movesLengthCounter = currentPokemon['moves'].length;
+    }else{
+        movesLengthCounter = 5;
+    }
+
+    for (let index = 0; index < movesLengthCounter; index++) {
+        const element = currentPokemon['moves'][index]['move']['name'];
+        container.innerHTML += `
+        
+        <div id="moves-stats" >
+        <h5>${element}</h5>
+        </div>
+       
+        `;
+    }
+  
+
+    event.stopPropagation();
+
+}
+
 function renderBaseStats(event){
 
     
     document.getElementById('baseStats-line').classList.add('addUnderlineBlue');
     document.getElementById('about-line').classList.remove('addUnderlineBlue');
-    document.getElementById('evolution-line').classList.remove('addUnderlineBlue');
     document.getElementById('moves-line').classList.remove('addUnderlineBlue');
     let hp = currentPokemon['stats'][0]['base_stat'];
     let attack = currentPokemon['stats'][1]['base_stat'];
