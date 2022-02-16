@@ -159,7 +159,7 @@ function renderMoves(event){
     if(currentPokemon['moves'].length < 5){
         movesLengthCounter = currentPokemon['moves'].length;
     }else{
-        movesLengthCounter = 5;
+        movesLengthCounter = 4;
     }
 
     for (let index = 0; index < movesLengthCounter; index++) {
