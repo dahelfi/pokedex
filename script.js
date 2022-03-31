@@ -7,14 +7,17 @@ let counter = 0;
 
 //function to download all the jsons from the internet
 async function loadFirst20Pokemon(){
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= 100; i++) {
 
         let url = 'https://pokeapi.co/api/v2/pokemon/'+i;
         let response = await fetch(url);
+        
         currentPokemon = await response.json();
         pokemonsAsJSONArray.push(currentPokemon);
+        
       
     }  
+    console.log("Hier kommt",currentPokemon);
     showPokemonOverview();
 }
 
@@ -57,6 +60,7 @@ function showPokemonOverview(){
 //helpfunction that shows some details on the mainpage
 function renderPokemonType(currentPokemon, i){
     let pokemonTypesJSONArray = currentPokemon['types'];
+    console.log("pokemontypen: ", pokemonTypesJSONArray)
     let container = document.getElementById('pokemonTypes'+i);
     for (let j = 0; j < pokemonTypesJSONArray.length; j++) {
         let pokemonType = pokemonTypesJSONArray[j]['type']['name'];
